@@ -12,7 +12,7 @@
     <body onload = "startGame()">
         <script>
             var myGamePiece;
-            var myObstacle;
+            var myObstacle = [];
 
             function startGame(){
                 myGameArea.start();
@@ -51,44 +51,6 @@
                 }
             }
 
-            function updateGameArea(){
-                if (myGamePiece.crashWith(myObstacle)){
-                    myGameArea.stop();
-                }
-                else{                
-                    myGameArea.clear();
-                    myObstacle.x += -1;
-                    myObstacle.update();
-                    // myGamePiece.speedX = 0;
-                    // myGamePiece.speedY = 0;
-                    // if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
-                    // if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
-                    // if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
-                    // if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
-                    if (myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
-                    myGamePiece.newPos();
-                    myGamePiece.update();
-                }
-            }
-
-            function moveup(){
-                myGamePiece.speedY -= 1;
-            }
-            function movedown(){
-                myGamePiece.speedY += 1;
-            }
-            function moveleft(){
-                myGamePiece.speedX -= 1;
-            }
-            function moveright(){
-                myGamePiece.speedX += 1;
-            }
-
-            function stopMove(){
-                myGamePiece.speedX = 0;
-                myGamePiece.speedY = 0; 
-            }
-
             var myGameArea={
                 canvas:document.createElement("canvas"),
                 start:function(){
@@ -96,6 +58,7 @@
                     this.canvas.height = 270;
                     this.canvas.style.cursor = "none";
                     this.context = this.canvas.getContext("2d");
+                    this.frameNo = 0;  
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                     this.intervL = setInterval(updateGameArea, 20);
                     // window.addEventListener('keydown',function(e){
@@ -119,6 +82,58 @@
                 stop : function(){
                     clearInterval(this.interval);
                 }
+            }
+
+            function updateGameArea(){
+                var x, y;
+                for (i = 0; i < myObstacles.length; i += 1) {
+                    if (myGamePiece.crashWith(myObstacles[i])) {
+                        myGameArea.stop();
+                        return;
+                    }
+                }
+                myGameArea.clear();
+                myGameArea.frameNo += 1;
+                if (myGameArea.frameNo == 1 || everyinterval(150)) {
+                    x = myGameArea.canvas.width;
+                    y = myGameArea.canvas.height - 200
+                    myObstacles.push(new component(10, 200, "green", x, y));
+                }
+                for (i = 0; i < myObstacles.length; i += 1) {
+                    myObstacles[i].x += -1;
+                    myObstacles[i].update();
+                }
+                // myGamePiece.speedX = 0;
+                // myGamePiece.speedY = 0;
+                // if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
+                // if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
+                // if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
+                // if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
+                if (myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
+                myGamePiece.newPos();
+                myGamePiece.update();
+            }
+
+            function moveup(){
+                myGamePiece.speedY -= 1;
+            }
+            function movedown(){
+                myGamePiece.speedY += 1;
+            }
+            function moveleft(){
+                myGamePiece.speedX -= 1;
+            }
+            function moveright(){
+                myGamePiece.speedX += 1;
+            }
+
+            function stopMove(){
+                myGamePiece.speedX = 0;
+                myGamePiece.speedY = 0; 
+            }
+            function everyinterval(n) {
+                if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+                return false;
             }
         </script>
         <p>We have create a game area! (or atleast an empty canvas)</p>
