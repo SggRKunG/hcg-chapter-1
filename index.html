@@ -12,12 +12,12 @@
     <body onload = "startGame()">
         <script>
             var myGamePiece;
-            var myObstacle = [];
+            var myObstacles = [];
 
             function startGame(){
                 myGameArea.start();
                 myGamePiece = new component(30,30,"red",10,120);
-                myObstacle = new component(10,200,"green",300,120);
+                myObstacles = new component(10,200,"green",300,120);
             }
 
             function component(width,height,color,x,y){
