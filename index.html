@@ -44,7 +44,7 @@
                 if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
                 if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
                 if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
-                if (myGameArea.x && myGameArea.y == 40) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
+                if (myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
                 myGamePiece.newPos();
                 myGamePiece.update();
             }
@@ -85,6 +85,10 @@
                     window.addEventListener('mousemove', function(e){
                         myGameArea.x = e.pageX;
                         myGameArea.y = e.pageY;
+                    })
+                    window.addEventListener('touchmove', function(e){
+                        myGameArea.x = e.touches[0].screenX;
+                        myGameArea.y = e.touches[0].screenY;
                     })
                 },
                 clear : function(){
