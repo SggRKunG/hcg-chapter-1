@@ -12,10 +12,12 @@
     <body onload = "startGame()">
         <script>
             var myGamePiece;
+            var myObstacle;
 
             function startGame(){
                 myGameArea.start();
                 myGamePiece = new component(30,30,"red",10,120);
+                myObstacle = new component(10,200,"green",300,120);
             }
 
             function component(width,height,color,x,y){
@@ -37,16 +39,23 @@
             }
 
             function updateGameArea(){
-                myGameArea.clear();
-                myGamePiece.speedX = 0;
-                myGamePiece.speedY = 0;
-                if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
-                if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
-                if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
-                if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
-                if (myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
-                myGamePiece.newPos();
-                myGamePiece.update();
+                if (myGamePiece.crashWith(myObstacle)){
+                    myGameArea.stop();
+                }
+                else{                
+                    myGameArea.clear();
+                    myObstacle.x += 1;
+                    myObstacle.update();
+                    myGamePiece.speedX = 0;
+                    myGamePiece.speedY = 0;
+                    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
+                    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
+                    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
+                    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
+                    if (myGameArea.key = false && myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
+                    myGamePiece.newPos();
+                    myGamePiece.update();
+                }
             }
 
             function moveup(){
