@@ -46,12 +46,12 @@
                     myGameArea.clear();
                     myObstacle.x += -1;
                     myObstacle.update();
-                    myGamePiece.speedX = 0;
-                    myGamePiece.speedY = 0;
-                    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
-                    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
-                    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
-                    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
+                    // myGamePiece.speedX = 0;
+                    // myGamePiece.speedY = 0;
+                    // if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
+                    // if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
+                    // if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
+                    // if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
                     if (myGameArea.x && myGameArea.y) {myGamePiece.x = myGameArea.x; myGamePiece.y = myGameArea.y;}
                     myGamePiece.newPos();
                     myGamePiece.update();
@@ -85,20 +85,20 @@
                     this.context = this.canvas.getContext("2d");
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                     this.intervL = setInterval(updateGameArea, 20);
-                    window.addEventListener('keydown',function(e){
-                        myGameArea.key = e.keyCode;
-                    })
-                    window.addEventListener('keyup',function(e){
-                        myGameArea.key = false;
-                    })
+                    // window.addEventListener('keydown',function(e){
+                    //     myGameArea.key = e.keyCode;
+                    // })
+                    // window.addEventListener('keyup',function(e){
+                    //     myGameArea.key = false;
+                    // })
                     window.addEventListener('mousemove', function(e){
                         myGameArea.x = e.pageX;
                         myGameArea.y = e.pageY;
                     })
-                    window.addEventListener('touchmove', function(e){
-                        myGameArea.x = e.touches[0].screenX;
-                        myGameArea.y = e.touches[0].screenY;
-                    })
+                    // window.addEventListener('touchmove', function(e){
+                    //     myGameArea.x = e.touches[0].screenX;
+                    //     myGameArea.y = e.touches[0].screenY;
+                    // })
                 },
                 clear : function(){
                     this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
