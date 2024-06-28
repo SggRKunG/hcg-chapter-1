@@ -14,6 +14,20 @@ const handleDrawCircle=(event)=>{
     }
 };
 
+const animate=()=>{
+    context.clearRect(0,0,canvas.width,canvas.height);
+
+    particleArray.array.forEach((particle) => {
+        particle?.move();
+        particle?.draw();
+    });
+
+    requestAnimationFrame(animate);
+};
+
+animate();
+
+const particleArray=[];
 class Particle{
     constructor(x=0,y=0){
         this.x=x;
