@@ -53,7 +53,7 @@ alert("1");
 const animate=()=>{
     context.clearRect(0,0,canvas.width,canvas.height);
 
-    particleArray.array.forEach((particle) => {
+    particleArray.forEach((particle) => {
         particle?.move();
         particle?.draw();
     });
