@@ -1,9 +1,6 @@
 const canvas=document.getElementById("myCanvas");
 const context=canvas.getContext("2d");
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
 const handleDrawCircle=(event)=>{
     a=event.pageX;
     b=event.pageY;
@@ -60,3 +57,9 @@ class Particle{
         this.y=this.y+this.dy;
     }
 }
+
+canvas.addEventListener("click",handleDrawCircle);
+canvas.addEventListener("resize",()=>{
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+});
