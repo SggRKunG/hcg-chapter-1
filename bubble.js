@@ -1,6 +1,6 @@
 const canvas=document.getElementById("myCanvas");
 const context=canvas.getContext("2d");
-alert("0");
+
 
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
@@ -35,7 +35,7 @@ class Particle{
     //move circle
     move(){
         this.x=this.x+this.dx;
-        this.y=this.y+this.dy;
+        this.y=this.y-this.dy;
     }
 }
 
@@ -48,7 +48,7 @@ const handleDrawCircle=(event)=>{
         particleArray.push(particle);
     }
 };
-alert("1");
+
 
 const animate=()=>{
     context.clearRect(0,0,canvas.width,canvas.height);
@@ -60,10 +60,10 @@ const animate=()=>{
 
     requestAnimationFrame(animate);
 };
-alert("2");
+
 
 animate();
-alert("3");
+
 
 
 
