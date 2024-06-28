@@ -45,7 +45,7 @@ const handleDrawCircle=(event)=>{
 
     for(let i=0; i<50; i++){
         const particle=new Particle(a,b);
-        particleArray=push(particle);
+        particleArray.push(particle);
     }
 };
 alert("1");
