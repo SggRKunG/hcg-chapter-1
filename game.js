@@ -3,7 +3,7 @@ class Game{
         this.canvas = document.getElementById("game");
         this.context = this.canvas.getContext("2d");
         this.sprites = [];
-        console.log(this.context);
+        
 
         this.spriteImage = new Image();
         this.spriteImage.src = "flower.png";
