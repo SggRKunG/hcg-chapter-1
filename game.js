@@ -6,7 +6,7 @@ class Game{
         
 
         this.spriteImage = new Image();
-        this.spriteImage.src = "flower.png";
+        this.spriteImage.src = "flowers.png";
 
         const game = this;
         this.loadJSON("flowers", function(data, game){
